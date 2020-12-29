@@ -1,0 +1,6 @@
+org\myapp\taskmanager\model\Status.class
+org\myapp\taskmanager\model\TaskTime.class
+org\myapp\taskmanager\model\Task.class
+org\myapp\taskmanager\model\User.class
+org\myapp\taskmanager\model\Project.class
+org\myapp\taskmanager\model\Role.class
