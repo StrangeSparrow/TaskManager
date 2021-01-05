@@ -1,10 +1,11 @@
 package org.myapp.taskmanager.service;
 
-import org.myapp.taskmanager.model.User;
+import org.myapp.taskmanager.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getAll();
-    User getById(int id);
+    List<UserDto> getAll();
+
+    UserDto getById(int id);
 }

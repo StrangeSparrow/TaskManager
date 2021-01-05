@@ -1,6 +1,6 @@
 package org.myapp.taskmanager.controller;
 
-import org.myapp.taskmanager.model.User;
+import org.myapp.taskmanager.dto.UserDto;
 import org.myapp.taskmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +17,14 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public List<User> getAllUsers() {
-        List<User> users = userService.getAll();
+    public List<UserDto> getAllUsers() {
+        List<UserDto> users = userService.getAll();
         return users;
     }
 
     @GetMapping("/{id}")
-    public User getUserById(@PathVariable("id") int id) {
-        User user = userService.getById(id);
+    public UserDto getUserById(@PathVariable("id") int id) {
+        UserDto user = userService.getById(id);
         return user;
     }
 }

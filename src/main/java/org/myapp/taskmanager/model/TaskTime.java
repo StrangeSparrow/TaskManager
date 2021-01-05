@@ -1,10 +1,7 @@
 package org.myapp.taskmanager.model;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
 @Entity
 @Table(name = "task_time")
 public class TaskTime {
