@@ -1,8 +1,8 @@
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role_id`) VALUES ('2', 'tolik', 'tolik', '2');
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role_id`) VALUES ('3', 'alex', 'alex', '2');
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role_id`) VALUES ('4', 'mike', 'mike', '3');
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role_id`) VALUES ('5', 'jhon', 'jhon', '3');
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role_id`) VALUES ('6', 'tim', 'tim', '3');
+INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('2', 'tolik', 'tolik', 'manager');
+INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('3', 'alex', 'alex', 'manager');
+INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('4', 'mike', 'mike', 'executor');
+INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('5', 'jhon', 'jhon', 'executor');
+INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('6', 'tim', 'tim', 'executor');
 
 INSERT INTO `task_manager_db`.`project` (`id`, `name`) VALUES ('1', 'first project');
 INSERT INTO `task_manager_db`.`project` (`id`, `name`) VALUES ('2', 'second project');

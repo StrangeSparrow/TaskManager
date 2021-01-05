@@ -2,14 +2,7 @@ CREATE TABLE `task_manager_db`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   `password` VARCHAR(20) NOT NULL,
-  `role_id` INT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-CREATE TABLE `task_manager_db`.`role` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
+  `role` VARCHAR(20) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

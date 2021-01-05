@@ -1,13 +1,3 @@
-ALTER TABLE `task_manager_db`.`user`
-ADD INDEX `user_role_idx` (`role_id` ASC) VISIBLE;
-;
-ALTER TABLE `task_manager_db`.`user`
-ADD CONSTRAINT `user_role`
-  FOREIGN KEY (`role_id`)
-  REFERENCES `task_manager_db`.`role` (`id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
 ALTER TABLE `task_manager_db`.`user_to_project`
 ADD INDEX `project_key_idx` (`project_id` ASC) VISIBLE;
 ;

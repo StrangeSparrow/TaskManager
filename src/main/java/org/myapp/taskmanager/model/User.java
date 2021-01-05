@@ -12,8 +12,7 @@ public class User {
     private String name;
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "user")
     private List<TaskTime> taskTimes;
@@ -92,5 +91,9 @@ public class User {
 
     public void setProjects(List<Project> projects) {
         this.projects = projects;
+    }
+
+    public enum Role {
+        admin, manager, executor;
     }
 }
