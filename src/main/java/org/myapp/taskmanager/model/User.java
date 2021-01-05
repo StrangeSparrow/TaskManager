@@ -18,9 +18,9 @@ public class User {
     private Role role;
     @OneToMany(mappedBy = "user")
     private List<TaskTime> taskTimes;
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Task> ownerTasks;
-    @OneToMany(mappedBy = "executor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "executor", fetch = FetchType.LAZY)
     private List<Task> executorTasks;
     @ManyToMany
     @JoinTable(name = "user_to_project",
