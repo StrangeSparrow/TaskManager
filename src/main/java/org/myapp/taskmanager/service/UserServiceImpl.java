@@ -11,17 +11,17 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserRepositories repositories;
+    UserRepositories userRepositories;
 
     @Override
     public List<User> getAll() {
-        List<User> users = repositories.findAll();
+        List<User> users = userRepositories.findAll();
         return users;
     }
 
     @Override
     public User getById(int id) {
-        Optional<User> user = repositories.findById(id);
+        Optional<User> user = userRepositories.findById(id);
         return user.get();
     }
 }

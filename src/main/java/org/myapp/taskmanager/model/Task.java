@@ -1,8 +1,11 @@
 package org.myapp.taskmanager.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "task")
 public class Task {
@@ -17,12 +20,15 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "executor_id")
     private User executor;
-    @ManyToOne
-    @JoinColumn(name = "task_status_id")
+    @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
     @OneToMany(mappedBy = "task")
     private List<TaskTime> taskTimes;
+
+    public enum Status {
+        start, execute, finish;
+    }
 }
