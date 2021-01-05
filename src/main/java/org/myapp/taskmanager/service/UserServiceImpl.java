@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
+    @Override
+    public void deleteUserById(int id) {
+        userRepositories.deleteById(id);
+    }
+
     private List<UserDto> convertUserList(List<User> users) {
         List<UserDto> userDtoList = new ArrayList<>();
 

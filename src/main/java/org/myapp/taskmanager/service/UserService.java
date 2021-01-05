@@ -8,4 +8,6 @@ public interface UserService {
     List<UserDto> getAll();
 
     UserDto getById(int id);
+
+    void deleteUserById(int id);
 }

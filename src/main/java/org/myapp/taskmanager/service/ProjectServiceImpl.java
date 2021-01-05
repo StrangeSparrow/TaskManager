@@ -34,6 +34,11 @@ public class ProjectServiceImpl implements ProjectService{
         return projectConverter.convert(project.get());
     }
 
+    @Override
+    public void deleteById(int id) {
+        projectRepository.deleteById(id);
+    }
+
     private List<ProjectDto> convertProjectList(List<Project> projects) {
         List<ProjectDto> projectDtoList = new ArrayList<>();
 
