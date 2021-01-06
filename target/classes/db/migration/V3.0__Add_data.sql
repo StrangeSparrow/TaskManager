@@ -1,1 +1,0 @@
-INSERT INTO `task_manager_db`.`user` (`id`, `name`, `password`, `role`) VALUES ('1', 'Admin', 'admin', 'admin');
