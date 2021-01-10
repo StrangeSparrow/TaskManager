@@ -1,6 +1,7 @@
 package org.myapp.taskmanager.service;
 
 import org.myapp.taskmanager.converter.TaskConverter;
+import org.myapp.taskmanager.converter.TaskDtoConverter;
 import org.myapp.taskmanager.dto.TaskDto;
 import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.repositories.TaskRepository;
@@ -17,6 +18,8 @@ public class TaskServiceImpl implements TaskService {
     TaskRepository taskRepository;
     @Autowired
     TaskConverter taskConverter;
+    @Autowired
+    TaskDtoConverter dtoConverter;
 
     @Override
     public List<TaskDto> getAll() {
@@ -38,6 +41,15 @@ public class TaskServiceImpl implements TaskService {
         List<Task> tasks = taskRepository.findTasksByUserId(id);
 
         return convertTaskList(tasks);
+    }
+
+    @Override
+    public TaskDto add(TaskDto taskDto) {
+        Task task = dtoConverter.convert(taskDto);
+
+        taskRepository.save(task);
+
+        return taskDto;
     }
 
     private List<TaskDto> convertTaskList(List<Task> tasks) {

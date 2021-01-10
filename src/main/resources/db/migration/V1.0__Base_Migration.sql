@@ -10,7 +10,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE `task_manager_db`.`task` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` TEXT NOT NULL,
-  `owner_id` INT NOT NULL,
+  `owner_id` INT NULL,
   `executor_id` INT NULL,
   `status` VARCHAR(20) NOT NULL,
   `project_id` INT NULL,
