@@ -11,6 +11,6 @@ public class ProjectConverter implements Converter<Project, ProjectDto> {
     public ProjectDto convert(Project project) {
         ProjectDto projectDto = ProjectDto.builder().id(project.getId()).name(project.getName()).build();
 
-        return  projectDto;
+        return projectDto;
     }
 }

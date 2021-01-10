@@ -27,7 +27,7 @@ public class ProjectController {
         return project;
     }
 
-    @GetMapping("/task_project/{id}")
+    @GetMapping("/by_task/{id}")
     public ProjectDto getProjectByTaskId(@PathVariable("id") int id) {
         ProjectDto project = projectService.getByTaskId(id);
 

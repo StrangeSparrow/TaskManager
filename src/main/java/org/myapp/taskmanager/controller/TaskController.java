@@ -25,7 +25,7 @@ public class TaskController {
         return task;
     }
 
-    @GetMapping("/user_task/{id}")
+    @GetMapping("/by_user/{id}")
     public List<TaskDto> getTasksByUserId(@PathVariable("id") int id) {
         List<TaskDto> tasks = taskService.getByUserId(id);
         return tasks;

@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
     private List<UserDto> convertUserList(List<User> users) {
         List<UserDto> userDtoList = new ArrayList<>();
 
-        for(User user : users) {
+        for (User user : users) {
             userDtoList.add(userConverter.convert(user));
         }
 
