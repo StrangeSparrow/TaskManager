@@ -13,7 +13,7 @@ public interface TaskService {
 
     List<TaskDto> getByUserId(int id);
 
-    TaskDto update(TaskDto task, int id);
+    TaskDto update(TaskDto task);
 
     List<TaskDto> getByProjectId(int id);
 

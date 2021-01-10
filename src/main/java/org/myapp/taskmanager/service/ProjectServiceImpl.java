@@ -1,24 +1,24 @@
 package org.myapp.taskmanager.service;
 
+import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.converter.ProjectConverter;
 import org.myapp.taskmanager.converter.ProjectDtoConverter;
 import org.myapp.taskmanager.dto.ProjectDto;
 import org.myapp.taskmanager.model.Project;
 import org.myapp.taskmanager.repositories.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class ProjectServiceImpl implements ProjectService {
-    @Autowired
     ProjectRepository projectRepository;
-    @Autowired
     ProjectConverter projectConverter;
-    @Autowired
     ProjectDtoConverter dtoConverter;
 
     @Override
@@ -51,13 +51,12 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDto;
     }
 
+    @Transactional
     @Override
-    public ProjectDto update(ProjectDto projectDto, int id) {
-        Project project = projectRepository.findById(id).get();
+    public ProjectDto update(ProjectDto projectDto) {
+        Project project = projectRepository.findById(projectDto.getId()).get();
 
         project.setName(projectDto.getName());
-
-        projectRepository.flush();
 
         return projectDto;
     }
@@ -68,11 +67,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     private List<ProjectDto> convertProjectList(List<Project> projects) {
-        List<ProjectDto> projectDtoList = new ArrayList<>();
-
-        for (Project project : projects) {
-            projectDtoList.add(projectConverter.convert(project));
-        }
-        return projectDtoList;
+        return projects.stream().map(project -> projectConverter.convert(project)).collect(Collectors.toList());
     }
 }

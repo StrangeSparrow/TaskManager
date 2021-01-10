@@ -1,5 +1,6 @@
 package org.myapp.taskmanager.service;
 
+import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.converter.TaskConverter;
 import org.myapp.taskmanager.converter.TaskDtoConverter;
 import org.myapp.taskmanager.dto.TaskDto;
@@ -7,22 +8,20 @@ import org.myapp.taskmanager.model.Project;
 import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.repositories.ProjectRepository;
 import org.myapp.taskmanager.repositories.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class TaskServiceImpl implements TaskService {
-    @Autowired
     TaskRepository taskRepository;
-    @Autowired
     TaskConverter taskConverter;
-    @Autowired
     TaskDtoConverter dtoConverter;
-    @Autowired
     ProjectRepository projectRepository;
 
     @Override
@@ -56,14 +55,13 @@ public class TaskServiceImpl implements TaskService {
         return taskDto;
     }
 
+    @Transactional
     @Override
-    public TaskDto update(TaskDto taskDto, int id) {
-        Task task = taskRepository.findById(id).get();
+    public TaskDto update(TaskDto taskDto) {
+        Task task = taskRepository.findById(taskDto.getId()).get();
 
         task.setName(taskDto.getName());
         task.setStatus(Task.Status.valueOf(taskDto.getStatus()));
-
-        taskRepository.flush();
 
         return taskDto;
     }
@@ -83,11 +81,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     private List<TaskDto> convertTaskList(List<Task> tasks) {
-        List<TaskDto> taskDtoList = new ArrayList<>();
-
-        for (Task task : tasks) {
-            taskDtoList.add(taskConverter.convert(task));
-        }
-        return taskDtoList;
+        return tasks.stream().map(task -> taskConverter.convert(task)).collect(Collectors.toList());
     }
 }

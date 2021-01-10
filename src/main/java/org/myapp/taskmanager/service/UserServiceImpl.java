@@ -1,5 +1,6 @@
 package org.myapp.taskmanager.service;
 
+import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.converter.UserConverter;
 import org.myapp.taskmanager.converter.UserDtoConverter;
 import org.myapp.taskmanager.dto.UserDto;
@@ -7,22 +8,20 @@ import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.model.User;
 import org.myapp.taskmanager.repositories.TaskRepository;
 import org.myapp.taskmanager.repositories.UserRepositories;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
     UserRepositories userRepositories;
-    @Autowired
     UserConverter userConverter;
-    @Autowired
     UserDtoConverter dtoConverter;
-    @Autowired
     TaskRepository taskRepository;
 
     @Override
@@ -50,13 +49,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto update(UserDto userDto, int id) {
-        User user = userRepositories.findById(id).get();
+    @Transactional
+    public UserDto update(UserDto userDto) {
+        User user = userRepositories.findById(userDto.getId()).get();
 
         user.setName(userDto.getName());
         user.setRole(User.Role.valueOf(userDto.getRole()));
-
-        userRepositories.flush();
 
         return userDto;
     }
@@ -79,12 +77,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private List<UserDto> convertUserList(List<User> users) {
-        List<UserDto> userDtoList = new ArrayList<>();
-
-        for (User user : users) {
-            userDtoList.add(userConverter.convert(user));
-        }
-
-        return userDtoList;
+        return users.stream().map(user -> userConverter.convert(user)).collect(Collectors.toList());
     }
 }

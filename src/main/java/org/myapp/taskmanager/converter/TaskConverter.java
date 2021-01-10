@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 public class TaskConverter implements Converter<Task, TaskDto> {
     @Override
     public TaskDto convert(Task task) {
-        TaskDto taskDto;
-        taskDto = TaskDto.builder().
+        TaskDto taskDto = TaskDto.builder().
                 id(task.getId()).
                 name(task.getName()).
                 status(task.getStatus().name()).
