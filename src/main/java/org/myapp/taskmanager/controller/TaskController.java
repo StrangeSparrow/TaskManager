@@ -1,16 +1,16 @@
 package org.myapp.taskmanager.controller;
 
+import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.dto.TaskDto;
 import org.myapp.taskmanager.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
-    @Autowired
     TaskService taskService;
 
     @GetMapping

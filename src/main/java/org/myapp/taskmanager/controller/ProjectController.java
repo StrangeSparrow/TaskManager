@@ -1,16 +1,16 @@
 package org.myapp.taskmanager.controller;
 
+import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.dto.ProjectDto;
 import org.myapp.taskmanager.service.ProjectService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/projects")
 public class ProjectController {
-    @Autowired
     ProjectService projectService;
 
     @GetMapping
