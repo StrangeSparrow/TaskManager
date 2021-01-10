@@ -1,25 +1,31 @@
 package org.myapp.taskmanager.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+    @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<TaskTime> taskTimes;
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> ownerTasks;
-    @OneToMany(mappedBy = "executor")
+    @OneToMany(mappedBy = "executor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Task> executorTasks;
     @ManyToMany
     @JoinTable(name = "user_to_project",
@@ -27,70 +33,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "project_id"))
     private List<Project> projects;
 
-    public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public List<TaskTime> getTaskTimes() {
-        return taskTimes;
-    }
-
-    public void setTaskTimes(List<TaskTime> taskTimes) {
-        this.taskTimes = taskTimes;
-    }
-
-    public List<Task> getOwnerTasks() {
-        return ownerTasks;
-    }
-
-    public void setOwnerTasks(List<Task> ownerTasks) {
-        this.ownerTasks = ownerTasks;
-    }
-
-    public List<Task> getExecutorTasks() {
-        return executorTasks;
-    }
-
-    public void setExecutorTasks(List<Task> executorTasks) {
-        this.executorTasks = executorTasks;
-    }
-
-    public List<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
+    public enum Role {
+        admin, manager, executor
     }
 }
