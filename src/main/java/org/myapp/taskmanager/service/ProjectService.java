@@ -10,4 +10,6 @@ public interface ProjectService {
     ProjectDto getById(int id);
 
     void deleteById(int id);
+
+    ProjectDto getByTaskId(int id);
 }

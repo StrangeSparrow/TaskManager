@@ -33,6 +33,13 @@ public class TaskServiceImpl implements TaskService {
         return taskDto;
     }
 
+    @Override
+    public List<TaskDto> getByUserId(int id) {
+        List<Task> tasks = taskRepository.findTasksByUserId(id);
+
+        return convertTaskList(tasks);
+    }
+
     private List<TaskDto> convertTaskList(List<Task> tasks) {
         List<TaskDto> taskDtoList = new ArrayList<>();
 

@@ -2,9 +2,7 @@ package org.myapp.taskmanager.service;
 
 import org.myapp.taskmanager.converter.ProjectConverter;
 import org.myapp.taskmanager.dto.ProjectDto;
-import org.myapp.taskmanager.dto.TaskDto;
 import org.myapp.taskmanager.model.Project;
-import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProjectServiceImpl implements ProjectService{
+public class ProjectServiceImpl implements ProjectService {
     @Autowired
     ProjectRepository projectRepository;
     @Autowired
@@ -32,6 +30,13 @@ public class ProjectServiceImpl implements ProjectService{
         Optional<Project> project = projectRepository.findById(id);
 
         return projectConverter.convert(project.get());
+    }
+
+    @Override
+    public ProjectDto getByTaskId(int id) {
+        Project project = projectRepository.findProjectsByTaskId(id);
+
+        return projectConverter.convert(project);
     }
 
     @Override
