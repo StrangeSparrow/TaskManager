@@ -6,7 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class TaskDto {
-    private final int id;
-    private final String name;
-    private final String status;
+    private int id;
+    private String name;
+    private String status;
 }

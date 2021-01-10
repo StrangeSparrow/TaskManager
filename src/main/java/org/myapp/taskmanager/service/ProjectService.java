@@ -11,7 +11,7 @@ public interface ProjectService {
 
     ProjectDto add(ProjectDto projectDto);
 
-    ProjectDto update(ProjectDto projectDto, int id);
+    ProjectDto update(ProjectDto projectDto);
 
     void deleteById(int id);
 

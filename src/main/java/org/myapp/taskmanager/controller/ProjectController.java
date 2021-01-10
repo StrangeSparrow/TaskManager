@@ -40,8 +40,8 @@ public class ProjectController {
     }
 
     @PutMapping("/{id}")
-    public void updateProject(@RequestBody ProjectDto projectDto, @PathVariable("id") int id) {
-        projectService.update(projectDto, id);
+    public void updateProject(@RequestBody ProjectDto projectDto) {
+        projectService.update(projectDto);
     }
 
     @DeleteMapping("/{id}")
