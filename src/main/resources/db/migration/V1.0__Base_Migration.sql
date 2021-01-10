@@ -1,7 +1,7 @@
 CREATE TABLE `task_manager_db`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(20) NULL,
   `role` VARCHAR(20) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB

@@ -1,6 +1,7 @@
 package org.myapp.taskmanager.service;
 
 import org.myapp.taskmanager.converter.UserConverter;
+import org.myapp.taskmanager.converter.UserDtoConverter;
 import org.myapp.taskmanager.dto.UserDto;
 import org.myapp.taskmanager.model.User;
 import org.myapp.taskmanager.repositories.UserRepositories;
@@ -17,6 +18,8 @@ public class UserServiceImpl implements UserService {
     UserRepositories userRepositories;
     @Autowired
     UserConverter userConverter;
+    @Autowired
+    UserDtoConverter dtoConverter;
 
     @Override
     public List<UserDto> getAll() {
@@ -29,6 +32,27 @@ public class UserServiceImpl implements UserService {
     public UserDto getById(int id) {
         Optional<User> user = userRepositories.findById(id);
         UserDto userDto = userConverter.convert(user.get());
+
+        return userDto;
+    }
+
+    @Override
+    public UserDto add(UserDto userDto) {
+        User user = dtoConverter.convert(userDto);
+
+        userRepositories.save(user);
+
+        return userDto;
+    }
+
+    @Override
+    public UserDto update(UserDto userDto, int id) {
+        User user = userRepositories.findById(id).get();
+
+        user.setName(userDto.getName());
+        user.setRole(User.Role.valueOf(userDto.getRole()));
+
+        userRepositories.flush();
 
         return userDto;
     }
