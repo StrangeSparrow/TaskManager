@@ -9,6 +9,10 @@ public interface ProjectService {
 
     ProjectDto getById(int id);
 
+    ProjectDto add(ProjectDto projectDto);
+
+    ProjectDto update(ProjectDto projectDto, int id);
+
     void deleteById(int id);
 
     ProjectDto getByTaskId(int id);

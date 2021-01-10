@@ -1,6 +1,7 @@
 package org.myapp.taskmanager.service;
 
 import org.myapp.taskmanager.converter.ProjectConverter;
+import org.myapp.taskmanager.converter.ProjectDtoConverter;
 import org.myapp.taskmanager.dto.ProjectDto;
 import org.myapp.taskmanager.model.Project;
 import org.myapp.taskmanager.repositories.ProjectRepository;
@@ -17,6 +18,8 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectRepository projectRepository;
     @Autowired
     ProjectConverter projectConverter;
+    @Autowired
+    ProjectDtoConverter dtoConverter;
 
     @Override
     public List<ProjectDto> getAll() {
@@ -37,6 +40,26 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = projectRepository.findProjectsByTaskId(id);
 
         return projectConverter.convert(project);
+    }
+
+    @Override
+    public ProjectDto add(ProjectDto projectDto) {
+        Project project = dtoConverter.convert(projectDto);
+
+        projectRepository.save(project);
+
+        return projectDto;
+    }
+
+    @Override
+    public ProjectDto update(ProjectDto projectDto, int id) {
+        Project project = projectRepository.findById(id).get();
+
+        project.setName(projectDto.getName());
+
+        projectRepository.flush();
+
+        return projectDto;
     }
 
     @Override

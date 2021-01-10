@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class TaskTime {
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

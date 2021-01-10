@@ -34,7 +34,17 @@ public class ProjectController {
         return project;
     }
 
-    @DeleteMapping("/{id}/delete")
+    @PostMapping
+    public void addProject(@RequestBody ProjectDto projectDto) {
+        projectService.add(projectDto);
+    }
+
+    @PutMapping("/{id}")
+    public void updateProject(@RequestBody ProjectDto projectDto, @PathVariable("id") int id) {
+        projectService.update(projectDto, id);
+    }
+
+    @DeleteMapping("/{id}")
     public void deleteProjectById(@PathVariable("id") int id) {
         projectService.deleteById(id);
     }
