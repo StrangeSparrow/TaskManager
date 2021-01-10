@@ -13,4 +13,8 @@ public interface TaskService {
     TaskDto add(TaskDto task);
 
     List<TaskDto> getByUserId(int id);
+
+    TaskDto update(TaskDto task, int id);
+
+    void delete(int id);
 }

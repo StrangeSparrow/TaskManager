@@ -52,6 +52,23 @@ public class TaskServiceImpl implements TaskService {
         return taskDto;
     }
 
+    @Override
+    public TaskDto update(TaskDto taskDto, int id) {
+        Task task = taskRepository.findById(id).get();
+
+        task.setName(taskDto.getName());
+        task.setStatus(Task.Status.valueOf(taskDto.getStatus()));
+
+        taskRepository.flush();
+
+        return taskDto;
+    }
+
+    @Override
+    public void delete(int id) {
+        taskRepository.deleteById(id);
+    }
+
     private List<TaskDto> convertTaskList(List<Task> tasks) {
         List<TaskDto> taskDtoList = new ArrayList<>();
 
