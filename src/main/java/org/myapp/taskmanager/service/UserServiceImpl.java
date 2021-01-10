@@ -3,7 +3,9 @@ package org.myapp.taskmanager.service;
 import org.myapp.taskmanager.converter.UserConverter;
 import org.myapp.taskmanager.converter.UserDtoConverter;
 import org.myapp.taskmanager.dto.UserDto;
+import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.model.User;
+import org.myapp.taskmanager.repositories.TaskRepository;
 import org.myapp.taskmanager.repositories.UserRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
     UserConverter userConverter;
     @Autowired
     UserDtoConverter dtoConverter;
+    @Autowired
+    TaskRepository taskRepository;
 
     @Override
     public List<UserDto> getAll() {
@@ -60,6 +64,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(int id) {
         userRepositories.deleteById(id);
+    }
+
+    @Override
+    public List<UserDto> getUsersByTaskId(int id) {
+        Task task = taskRepository.findById(id).get();
+
+        List<User> users = new ArrayList<>();
+
+        users.add(task.getExecutor());
+        users.add(task.getOwner());
+
+        return convertUserList(users);
     }
 
     private List<UserDto> convertUserList(List<User> users) {

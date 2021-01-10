@@ -15,5 +15,7 @@ public interface TaskService {
 
     TaskDto update(TaskDto task, int id);
 
+    List<TaskDto> getByProjectId(int id);
+
     void delete(int id);
 }

@@ -3,7 +3,9 @@ package org.myapp.taskmanager.service;
 import org.myapp.taskmanager.converter.TaskConverter;
 import org.myapp.taskmanager.converter.TaskDtoConverter;
 import org.myapp.taskmanager.dto.TaskDto;
+import org.myapp.taskmanager.model.Project;
 import org.myapp.taskmanager.model.Task;
+import org.myapp.taskmanager.repositories.ProjectRepository;
 import org.myapp.taskmanager.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class TaskServiceImpl implements TaskService {
     TaskConverter taskConverter;
     @Autowired
     TaskDtoConverter dtoConverter;
+    @Autowired
+    ProjectRepository projectRepository;
 
     @Override
     public List<TaskDto> getAll() {
@@ -62,6 +66,15 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.flush();
 
         return taskDto;
+    }
+
+    @Override
+    public List<TaskDto> getByProjectId(int id) {
+        Project project = projectRepository.findById(id).get();
+
+        List<Task> tasks = project.getTasks();
+
+        return convertTaskList(tasks);
     }
 
     @Override

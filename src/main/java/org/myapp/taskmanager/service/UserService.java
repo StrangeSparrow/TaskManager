@@ -14,4 +14,6 @@ public interface UserService {
     UserDto update(UserDto userDto, int id);
 
     void deleteUserById(int id);
+
+    List<UserDto> getUsersByTaskId(int id);
 }
