@@ -25,13 +25,19 @@ public class TaskController {
         return task;
     }
 
-    @GetMapping("/by_user/{id}")
-    public List<TaskDto> getTasksByUserId(@PathVariable("id") int id) {
-        List<TaskDto> tasks = taskService.getByUserId(id);
+    @GetMapping("/by-owner/{id}")
+    public List<TaskDto> getTasksByOwnerId(@PathVariable("id") int id) {
+        List<TaskDto> tasks = taskService.getByOwnerId(id);
         return tasks;
     }
 
-    @GetMapping("/by_project/{id}")
+    @GetMapping("/by-executor/{id}")
+    public List<TaskDto> getTasksByExecutorId(@PathVariable("id") int id) {
+        List<TaskDto> tasks = taskService.getByExecutorId(id);
+        return tasks;
+    }
+
+    @GetMapping("/by-project/{id}")
     public List<TaskDto> getTasksByProjectId(@PathVariable("id") int id) {
         List<TaskDto> tasks = taskService.getByProjectId(id);
 

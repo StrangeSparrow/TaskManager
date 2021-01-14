@@ -15,5 +15,8 @@ public interface UserService {
 
     void deleteUserById(int id);
 
-    List<UserDto> getUsersByTaskId(int id);
+    UserDto getUsersByOwnerTaskId(int id);
+
+    UserDto getUsersByExecutorTaskId(int id);
 }
+

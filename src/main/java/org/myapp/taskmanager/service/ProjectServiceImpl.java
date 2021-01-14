@@ -36,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public ProjectDto getByTaskId(int id) {
-        Project project = projectRepository.findProjectsByTaskId(id);
+        Project project = projectRepository.findByTasksIdLike(id);
 
         return projectConverter.convert(project);
     }

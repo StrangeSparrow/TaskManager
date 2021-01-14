@@ -19,9 +19,16 @@ public class UserController {
         return users;
     }
 
-    @GetMapping("/by_task/{id}")
-    public List<UserDto> getUsersByTaskId(@PathVariable("id") int id) {
-        List<UserDto> users = userService.getUsersByTaskId(id);
+    @GetMapping("/by-task/{id}/executor")
+    public UserDto getExecutorByTaskId(@PathVariable("id") int id) {
+        UserDto users = userService.getUsersByExecutorTaskId(id);
+
+        return users;
+    }
+
+    @GetMapping("/by-task/{id}/owner")
+    public UserDto getOwnerByTaskId(@PathVariable("id") int id) {
+        UserDto users = userService.getUsersByOwnerTaskId(id);
 
         return users;
     }

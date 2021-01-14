@@ -4,14 +4,11 @@ import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.converter.UserConverter;
 import org.myapp.taskmanager.converter.UserDtoConverter;
 import org.myapp.taskmanager.dto.UserDto;
-import org.myapp.taskmanager.model.Task;
 import org.myapp.taskmanager.model.User;
-import org.myapp.taskmanager.repositories.TaskRepository;
 import org.myapp.taskmanager.repositories.UserRepositories;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,7 +19,6 @@ public class UserServiceImpl implements UserService {
     UserRepositories userRepositories;
     UserConverter userConverter;
     UserDtoConverter dtoConverter;
-    TaskRepository taskRepository;
 
     @Override
     public List<UserDto> getAll() {
@@ -65,15 +61,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getUsersByTaskId(int id) {
-        Task task = taskRepository.findById(id).get();
+    public UserDto getUsersByOwnerTaskId(int id) {
+        User owner = userRepositories.findByOwnerTasksIdLike(id);
 
-        List<User> users = new ArrayList<>();
+        return userConverter.convert(owner);
+    }
 
-        users.add(task.getExecutor());
-        users.add(task.getOwner());
+    @Override
+    public UserDto getUsersByExecutorTaskId(int id) {
+        User executor = userRepositories.findByExecutorTasksIdLike(id);
 
-        return convertUserList(users);
+        return userConverter.convert(executor);
     }
 
     private List<UserDto> convertUserList(List<User> users) {

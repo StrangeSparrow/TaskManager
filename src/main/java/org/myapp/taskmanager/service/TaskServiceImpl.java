@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import org.myapp.taskmanager.converter.TaskConverter;
 import org.myapp.taskmanager.converter.TaskDtoConverter;
 import org.myapp.taskmanager.dto.TaskDto;
-import org.myapp.taskmanager.model.Project;
 import org.myapp.taskmanager.model.Task;
-import org.myapp.taskmanager.repositories.ProjectRepository;
 import org.myapp.taskmanager.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +19,6 @@ public class TaskServiceImpl implements TaskService {
     TaskRepository taskRepository;
     TaskConverter taskConverter;
     TaskDtoConverter dtoConverter;
-    ProjectRepository projectRepository;
 
     @Override
     public List<TaskDto> getAll() {
@@ -39,8 +36,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<TaskDto> getByUserId(int id) {
-        List<Task> tasks = taskRepository.findTasksByUserId(id);
+    public List<TaskDto> getByOwnerId(int id) {
+        List<Task> tasks = taskRepository.findByOwnerIdLike(id);
+
+        return convertTaskList(tasks);
+    }
+
+    @Override
+    public List<TaskDto> getByExecutorId(int id) {
+        List<Task> tasks = taskRepository.findByExecutorIdLike(id);
 
         return convertTaskList(tasks);
     }
@@ -67,9 +71,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> getByProjectId(int id) {
-        Project project = projectRepository.findById(id).get();
-
-        List<Task> tasks = project.getTasks();
+        List<Task> tasks = taskRepository.findByProjectIdLike(id);
 
         return convertTaskList(tasks);
     }

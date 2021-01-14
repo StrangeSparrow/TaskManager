@@ -11,7 +11,9 @@ public interface TaskService {
 
     TaskDto add(TaskDto task);
 
-    List<TaskDto> getByUserId(int id);
+    List<TaskDto> getByOwnerId(int id);
+
+    List<TaskDto> getByExecutorId(int id);
 
     TaskDto update(TaskDto task);
 
