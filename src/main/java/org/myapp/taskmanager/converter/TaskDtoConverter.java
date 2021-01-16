@@ -10,8 +10,9 @@ public class TaskDtoConverter implements Converter<TaskDto, Task> {
     @Override
     public Task convert(TaskDto taskDto) {
         Task task = new Task();
+        task.setId(taskDto.getId());
         task.setName(taskDto.getName());
-        task.setStatus(Task.Status.start);
+        task.setStatus(Task.Status.valueOf(taskDto.getStatus()));
 
         return task;
     }
