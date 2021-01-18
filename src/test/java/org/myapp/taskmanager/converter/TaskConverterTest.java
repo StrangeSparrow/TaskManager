@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.myapp.taskmanager.dto.TaskDto;
 import org.myapp.taskmanager.model.Task;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskConverterTest {
     private static TaskConverter converter;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.myapp.taskmanager.dto.ProjectDto;
 import org.myapp.taskmanager.model.Project;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProjectConverterTest {
     private static ProjectConverter converter;

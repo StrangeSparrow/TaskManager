@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.myapp.taskmanager.dto.UserDto;
 import org.myapp.taskmanager.model.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserDtoConverterTest {
     private static UserDtoConverter converter;
