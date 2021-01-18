@@ -1,6 +1,5 @@
 package org.myapp.taskmanager.service;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -17,6 +16,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -37,7 +38,7 @@ class UserServiceImplTest {
 
     @Test
     void getAll() {
-        Mockito.when(userRepositories.findAll()).thenReturn(listTestData);
+        when(userRepositories.findAll()).thenReturn(listTestData);
 
         List<UserDto> users = service.getAll();
 
@@ -56,22 +57,27 @@ class UserServiceImplTest {
     }
 
     @Test
-    void add() {
-    }
-
-    @Test
-    void update() {
-    }
-
-    @Test
     void deleteUserById() {
+        service.deleteUserById(1);
+
+        Mockito.verify(userRepositories, atLeastOnce()).deleteById(1);
     }
 
     @Test
     void getUsersByOwnerTaskId() {
+        when(userRepositories.findByOwnerTasksIdLike(1)).thenReturn(new User(1, "test4", "test4", User.Role.manager, null, null, null, null));
+
+        service.getUsersByOwnerTaskId(1);
+
+        Mockito.verify(userRepositories, atLeastOnce()).findByOwnerTasksIdLike(1);
     }
 
     @Test
     void getUsersByExecutorTaskId() {
+        when(userRepositories.findByExecutorTasksIdLike(1)).thenReturn(new User(1, "test4", "test4", User.Role.manager, null, null, null, null));
+
+        service.getUsersByExecutorTaskId(1);
+
+        Mockito.verify(userRepositories, atLeastOnce()).findByExecutorTasksIdLike(1);
     }
 }
