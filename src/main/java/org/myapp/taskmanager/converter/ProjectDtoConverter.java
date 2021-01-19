@@ -10,7 +10,12 @@ public class ProjectDtoConverter implements Converter<ProjectDto, Project> {
     @Override
     public Project convert(ProjectDto projectDto) {
         Project project = new Project();
-        project.setId(projectDto.getId());
+
+        if (projectDto.getId() != 0)
+            project.setId(projectDto.getId());
+        else
+            project.setId(null);
+
         project.setName(projectDto.getName());
 
         return project;
