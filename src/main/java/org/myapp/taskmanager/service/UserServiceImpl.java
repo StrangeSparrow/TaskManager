@@ -62,16 +62,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUsersByOwnerTaskId(int id) {
-        User owner = userRepositories.findByOwnerTasksIdLike(id);
+        Optional<User> owner = userRepositories.findByOwnerTasksIdLike(id);
 
-        return userConverter.convert(owner);
+        if(owner.isEmpty())
+            return new UserDto();
+
+        return userConverter.convert(owner.get());
     }
 
     @Override
     public UserDto getUsersByExecutorTaskId(int id) {
-        User executor = userRepositories.findByExecutorTasksIdLike(id);
+        Optional<User> executor = userRepositories.findByExecutorTasksIdLike(id);
 
-        return userConverter.convert(executor);
+        if(executor.isEmpty())
+            return new UserDto();
+
+        return userConverter.convert(executor.get());
     }
 
     private List<UserDto> convertUserList(List<User> users) {

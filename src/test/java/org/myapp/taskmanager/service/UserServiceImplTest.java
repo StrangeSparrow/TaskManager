@@ -62,22 +62,4 @@ class UserServiceImplTest {
 
         Mockito.verify(userRepositories, atLeastOnce()).deleteById(1);
     }
-
-    @Test
-    void getUsersByOwnerTaskId() {
-        when(userRepositories.findByOwnerTasksIdLike(1)).thenReturn(new User(1, "test4", "test4", User.Role.manager, null, null, null, null));
-
-        service.getUsersByOwnerTaskId(1);
-
-        Mockito.verify(userRepositories, atLeastOnce()).findByOwnerTasksIdLike(1);
-    }
-
-    @Test
-    void getUsersByExecutorTaskId() {
-        when(userRepositories.findByExecutorTasksIdLike(1)).thenReturn(new User(1, "test4", "test4", User.Role.manager, null, null, null, null));
-
-        service.getUsersByExecutorTaskId(1);
-
-        Mockito.verify(userRepositories, atLeastOnce()).findByExecutorTasksIdLike(1);
-    }
 }
