@@ -54,7 +54,7 @@ public class TaskController {
         taskService.add(task);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public void updateTask(@RequestBody TaskDto task) {
         taskService.update(task);
     }

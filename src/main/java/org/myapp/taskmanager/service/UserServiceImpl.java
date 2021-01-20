@@ -83,4 +83,18 @@ public class UserServiceImpl implements UserService {
     private List<UserDto> convertUserList(List<User> users) {
         return users.stream().map(user -> userConverter.convert(user)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserDto> getOwners() {
+        List<User> owners = userRepositories.findByRole(User.Role.manager);
+
+        return convertUserList(owners);
+    }
+
+    @Override
+    public List<UserDto> getExecutors() {
+        List<User> executors = userRepositories.findByRole(User.Role.executor);
+
+        return convertUserList(executors);
+    }
 }

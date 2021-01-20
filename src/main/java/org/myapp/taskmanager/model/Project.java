@@ -1,16 +1,15 @@
 package org.myapp.taskmanager.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "project")
 public class Project {
     @Id
@@ -25,4 +24,8 @@ public class Project {
     private List<User> users;
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Task> tasks;
+
+    public Project(Integer id) {
+        this.id = id;
+    }
 }

@@ -53,4 +53,14 @@ public class UserController {
     public void deleteUserById(@PathVariable("id") int id) {
         userService.deleteUserById(id);
     }
+
+    @GetMapping("/owners")
+    public List<UserDto> getOwners() {
+        return userService.getOwners();
+    }
+
+    @GetMapping("/executors")
+    public List<UserDto> getExecutors() {
+        return userService.getExecutors();
+    }
 }
