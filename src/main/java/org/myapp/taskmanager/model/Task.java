@@ -18,10 +18,10 @@ public class Task {
     private Integer id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "executor_id")
     private User executor;
     @Enumerated(EnumType.STRING)
