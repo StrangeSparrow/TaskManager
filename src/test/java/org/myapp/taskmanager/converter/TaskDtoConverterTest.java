@@ -20,7 +20,7 @@ class TaskDtoConverterTest {
 
     @BeforeEach
     void setUp() {
-        dto = TaskDto.builder().id(44).name("TEST").status("finish").build();
+        dto = TaskDto.builder().id(44).name("TEST").status(Task.Status.start).build();
     }
 
     @Test

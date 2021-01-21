@@ -12,7 +12,7 @@ public class TaskConverter implements Converter<Task, TaskDto> {
         TaskDto taskDto = TaskDto.builder().
                 id(task.getId()).
                 name(task.getName()).
-                status(task.getStatus().name()).
+                status(task.getStatus()).
                 owner(task.getOwner() == null ? null : task.getOwner().getId()).
                 executor(task.getExecutor() == null ? null : task.getExecutor().getId()).
                 project(task.getProject() == null ? null : task.getProject().getId()).

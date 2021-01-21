@@ -12,7 +12,7 @@ public class UserConverter implements Converter<User, UserDto> {
         UserDto userDto = UserDto.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .role(user.getRole().name())
+                .role(user.getRole())
                 .build();
 
         return userDto;

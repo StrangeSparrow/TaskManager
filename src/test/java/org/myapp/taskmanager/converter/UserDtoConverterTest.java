@@ -20,7 +20,7 @@ class UserDtoConverterTest {
 
     @BeforeEach
     void setUp() {
-        dto = UserDto.builder().id(44).name("TEST").role("admin").build();
+        dto = UserDto.builder().id(44).name("TEST").role(User.Role.admin).build();
     }
 
     @Test

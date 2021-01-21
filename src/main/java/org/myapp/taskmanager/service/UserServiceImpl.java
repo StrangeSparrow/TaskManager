@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepositories.findById(userDto.getId()).get();
 
         user.setName(userDto.getName());
-        user.setRole(User.Role.valueOf(userDto.getRole()));
+        user.setRole(userDto.getRole());
 
         return userDto;
     }
