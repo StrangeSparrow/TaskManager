@@ -1,5 +1,6 @@
 package org.myapp.taskmanager.converter;
 
+import org.myapp.taskmanager.AppConst;
 import org.myapp.taskmanager.dto.TaskTimeDto;
 import org.myapp.taskmanager.model.TaskTime;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +12,7 @@ import java.text.SimpleDateFormat;
 public class TaskTimeConverter implements Converter<TaskTime, TaskTimeDto> {
     @Override
     public TaskTimeDto convert(TaskTime taskTime) {
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+        SimpleDateFormat format = new SimpleDateFormat(AppConst.DATA_FORMAT);
 
         String dataString = format.format(taskTime.getDate());
 

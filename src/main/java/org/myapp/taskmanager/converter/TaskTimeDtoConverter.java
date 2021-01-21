@@ -15,13 +15,12 @@ public class TaskTimeDtoConverter implements Converter<TaskTimeDto, TaskTime> {
     @SneakyThrows
     @Override
     public TaskTime convert(TaskTimeDto taskTimeDto) {
-        SimpleDateFormat format = new SimpleDateFormat();
-
-        TaskTime taskTime = new TaskTime();
-
-        taskTime.setId(taskTimeDto.getId());
-        taskTime.setHours(taskTimeDto.getHours());
-        taskTime.setDate(format.parse(taskTimeDto.getData()));
+        TaskTime taskTime = TaskTime.builder()
+                .id(taskTimeDto.getId())
+                .hours(taskTimeDto.getHours())
+                .date(SimpleDateFormat.getDateInstance()
+                        .parse(taskTimeDto.getData()))
+                .build();
 
         if(taskTimeDto.getUser() != 0)
             taskTime.setUser(new User(taskTimeDto.getUser()));
