@@ -1,7 +1,6 @@
 package org.myapp.taskmanager.service;
 
 import org.myapp.taskmanager.dto.UserDto;
-import org.myapp.taskmanager.model.User;
 
 import java.util.List;
 

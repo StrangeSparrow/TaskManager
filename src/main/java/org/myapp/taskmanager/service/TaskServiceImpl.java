@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class TaskServiceImpl implements TaskService {
-    private TaskRepository taskRepository;
-    private TaskConverter taskConverter;
-    private TaskDtoConverter dtoConverter;
+    private final TaskRepository taskRepository;
+    private final TaskConverter taskConverter;
+    private final TaskDtoConverter dtoConverter;
 
     @Override
     public List<TaskDto> getAll() {

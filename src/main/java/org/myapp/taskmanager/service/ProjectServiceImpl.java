@@ -38,7 +38,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto getByTaskId(int id) {
         Project project = projectRepository.findByTasksIdLike(id);
 
-        if(project == null)
+        if (project == null)
             return ProjectDto.builder().build();
 
         return projectConverter.convert(project);

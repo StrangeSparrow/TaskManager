@@ -21,7 +21,15 @@ public class TaskTimeServiceImpl implements TaskTimeService {
 
     @Override
     public List<TaskTimeDto> getAll() {
-        List<TaskTime> taskTimes = repository.findAll();
+        List<TaskTime> taskTimes = repository.findAll().stream()
+                .sorted((t1, t2) -> {
+                    if(t1.getDate().before(t2.getDate()))
+                        return -1;
+                    if(t2.getDate().before(t1.getDate()))
+                        return 1;
+                    return 0;
+                })
+                .collect(Collectors.toList());
 
         return convert(taskTimes);
     }
@@ -66,7 +74,15 @@ public class TaskTimeServiceImpl implements TaskTimeService {
 
     @Override
     public List<TaskTimeDto> getByTaskId(int id) {
-        List<TaskTime> timeByTask = repository.findByTaskIdLike(id);
+        List<TaskTime> timeByTask = repository.findByTaskIdLike(id).stream()
+                .sorted((t1, t2) -> {
+                    if(t1.getDate().before(t2.getDate()))
+                        return -1;
+                    if(t2.getDate().before(t1.getDate()))
+                        return 1;
+                    return 0;
+                })
+                .collect(Collectors.toList());
 
         return convert(timeByTask);
     }

@@ -33,11 +33,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "project_id"))
     private List<Project> projects;
 
-    public enum Role {
-        admin, manager, executor
-    }
-
     public User(Integer id) {
         this.id = id;
+    }
+
+    public enum Role {
+        admin, manager, executor
     }
 }

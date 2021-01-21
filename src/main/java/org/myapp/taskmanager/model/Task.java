@@ -32,11 +32,11 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<TaskTime> taskTimes;
 
-    public enum Status {
-        start, execute, finish
-    }
-
     public Task(Integer id) {
         this.id = id;
+    }
+
+    public enum Status {
+        start, execute, finish
     }
 }

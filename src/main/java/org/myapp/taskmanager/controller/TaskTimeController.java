@@ -38,4 +38,9 @@ public class TaskTimeController {
     public void addTimeForTask(@RequestBody TaskTimeDto time) {
         service.add(time);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteTimeById(@PathVariable("id") int id) {
+        service.deleteById(id);
+    }
 }

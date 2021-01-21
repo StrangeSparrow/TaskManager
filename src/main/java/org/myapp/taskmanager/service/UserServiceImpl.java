@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
     public UserDto getUsersByOwnerTaskId(int id) {
         Optional<User> owner = userRepositories.findByOwnerTasksIdLike(id);
 
-        if(owner.isEmpty())
+        if (owner.isEmpty())
             return new UserDto();
 
         return userConverter.convert(owner.get());
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
     public UserDto getUsersByExecutorTaskId(int id) {
         Optional<User> executor = userRepositories.findByExecutorTasksIdLike(id);
 
-        if(executor.isEmpty())
+        if (executor.isEmpty())
             return new UserDto();
 
         return userConverter.convert(executor.get());
