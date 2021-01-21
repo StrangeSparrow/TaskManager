@@ -12,9 +12,7 @@ public class TaskDtoConverter implements Converter<TaskDto, Task> {
     public Task convert(TaskDto taskDto) {
         Task task = new Task();
 
-        if(taskDto.getId() != 0)
-            task.setId(taskDto.getId());
-
+        task.setId(taskDto.getId());
         task.setName(taskDto.getName());
         task.setStatus(Task.Status.valueOf(taskDto.getStatus()));
 

@@ -11,10 +11,7 @@ public class ProjectDtoConverter implements Converter<ProjectDto, Project> {
     public Project convert(ProjectDto projectDto) {
         Project project = new Project();
 
-        if (projectDto.getId() != 0)
-            project.setId(projectDto.getId());
-        else
-            project.setId(null);
+        project.setId(projectDto.getId());
 
         project.setName(projectDto.getName());
 
