@@ -1,15 +1,15 @@
 package org.myapp.taskmanager.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "user")
 public class User {
@@ -35,5 +35,9 @@ public class User {
 
     public enum Role {
         admin, manager, executor
+    }
+
+    public User(Integer id) {
+        this.id = id;
     }
 }

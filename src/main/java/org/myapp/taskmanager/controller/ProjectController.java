@@ -39,7 +39,7 @@ public class ProjectController {
         projectService.add(projectDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public void updateProject(@RequestBody ProjectDto projectDto) {
         projectService.update(projectDto);
     }

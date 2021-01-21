@@ -9,7 +9,10 @@ import org.springframework.stereotype.Component;
 public class ProjectConverter implements Converter<Project, ProjectDto> {
     @Override
     public ProjectDto convert(Project project) {
-        ProjectDto projectDto = ProjectDto.builder().id(project.getId()).name(project.getName()).build();
+        ProjectDto projectDto = ProjectDto.builder()
+                .id(project.getId())
+                .name(project.getName())
+                .build();
 
         return projectDto;
     }

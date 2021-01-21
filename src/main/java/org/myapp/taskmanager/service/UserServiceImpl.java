@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepositories.findById(userDto.getId()).get();
 
         user.setName(userDto.getName());
-        user.setRole(User.Role.valueOf(userDto.getRole()));
+        user.setRole(userDto.getRole());
 
         return userDto;
     }
@@ -62,19 +62,39 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUsersByOwnerTaskId(int id) {
-        User owner = userRepositories.findByOwnerTasksIdLike(id);
+        Optional<User> owner = userRepositories.findByOwnerTasksIdLike(id);
 
-        return userConverter.convert(owner);
+        if(owner.isEmpty())
+            return new UserDto();
+
+        return userConverter.convert(owner.get());
     }
 
     @Override
     public UserDto getUsersByExecutorTaskId(int id) {
-        User executor = userRepositories.findByExecutorTasksIdLike(id);
+        Optional<User> executor = userRepositories.findByExecutorTasksIdLike(id);
 
-        return userConverter.convert(executor);
+        if(executor.isEmpty())
+            return new UserDto();
+
+        return userConverter.convert(executor.get());
     }
 
     private List<UserDto> convertUserList(List<User> users) {
         return users.stream().map(user -> userConverter.convert(user)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<UserDto> getOwners() {
+        List<User> owners = userRepositories.findByRole(User.Role.manager);
+
+        return convertUserList(owners);
+    }
+
+    @Override
+    public List<UserDto> getExecutors() {
+        List<User> executors = userRepositories.findByRole(User.Role.executor);
+
+        return convertUserList(executors);
     }
 }

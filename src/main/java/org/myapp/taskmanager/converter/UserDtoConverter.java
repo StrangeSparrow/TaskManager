@@ -10,8 +10,9 @@ public class UserDtoConverter implements Converter<UserDto, User> {
     @Override
     public User convert(UserDto userDto) {
         User user = new User();
+        user.setId(userDto.getId());
         user.setName(userDto.getName());
-        user.setRole(User.Role.valueOf(userDto.getRole()));
+        user.setRole(userDto.getRole());
 
         return user;
     }

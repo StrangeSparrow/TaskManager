@@ -1,12 +1,12 @@
 package org.myapp.taskmanager.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
+@AllArgsConstructor
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,10 +18,10 @@ public class Task {
     private Integer id;
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "owner_id")
     private User owner;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "executor_id")
     private User executor;
     @Enumerated(EnumType.STRING)
@@ -34,5 +34,9 @@ public class Task {
 
     public enum Status {
         start, execute, finish
+    }
+
+    public Task(Integer id) {
+        this.id = id;
     }
 }

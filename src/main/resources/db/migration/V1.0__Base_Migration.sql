@@ -34,10 +34,13 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE `task_manager_db`.`task_time` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `task_id` INT NOT NULL,
+  `user_id` INT NULL,
+  `task_id` INT NULL,
   `time_task` TIME NULL,
   `date_task` DATE NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
+ALTER TABLE `task_manager_db`.`task_time`
+CHANGE COLUMN `time_task` `time_task` INT NULL DEFAULT NULL ;
