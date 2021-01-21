@@ -35,4 +35,8 @@ public class Task {
     public enum Status {
         start, execute, finish
     }
+
+    public Task(Integer id) {
+        this.id = id;
+    }
 }

@@ -11,4 +11,6 @@ public class TaskTimeDto {
     private int id;
     private int hours;
     private String data;
+    private int user;
+    private int task;
 }

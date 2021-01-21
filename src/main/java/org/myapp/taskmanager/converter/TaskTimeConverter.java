@@ -19,6 +19,8 @@ public class TaskTimeConverter implements Converter<TaskTime, TaskTimeDto> {
                 .id(taskTime.getId())
                 .hours(taskTime.getHours())
                 .data(dataString)
+                .user(taskTime.getUser().getId())
+                .task(taskTime.getTask().getId())
                 .build();
 
         return taskTimeDto;

@@ -13,9 +13,9 @@ public class TaskConverter implements Converter<Task, TaskDto> {
                 id(task.getId()).
                 name(task.getName()).
                 status(task.getStatus().name()).
-                owner(task.getOwner().getId()).
-                executor(task.getExecutor().getId()).
-                project(task.getProject().getId()).
+                owner(task.getOwner() == null ? 0 : task.getOwner().getId()).
+                executor(task.getExecutor() == null ? 0 : task.getExecutor().getId()).
+                project(task.getProject() == null ? 0 : task.getProject().getId()).
                 build();
 
         return taskDto;
