@@ -23,10 +23,10 @@ public class TaskTimeDtoConverter implements Converter<TaskTimeDto, TaskTime> {
                 .date(df.parse(taskTimeDto.getData()))
                 .build();
 
-        if (taskTimeDto.getUser() != 0)
+        if (taskTimeDto.getUser() != null)
             taskTime.setUser(new User(taskTimeDto.getUser()));
 
-        if (taskTimeDto.getTask() != 0)
+        if (taskTimeDto.getTask() != null)
             taskTime.setTask(new Task(taskTimeDto.getTask()));
 
         return taskTime;

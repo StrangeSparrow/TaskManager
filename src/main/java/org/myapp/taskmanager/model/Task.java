@@ -29,7 +29,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<TaskTime> taskTimes;
 
     public Task(Integer id) {
