@@ -14,4 +14,6 @@ public interface TaskTimeService {
     TaskTimeDto update(TaskTimeDto taskTimeDto);
 
     void deleteById(int id);
+
+    List<TaskTimeDto> getByTaskId(int id);
 }

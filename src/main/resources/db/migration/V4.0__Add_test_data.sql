@@ -20,3 +20,11 @@ INSERT INTO `task_manager_db`.`task` (`id`, `name`, `owner_id`, `executor_id`, `
 INSERT INTO `task_manager_db`.`task` (`id`, `name`, `owner_id`, `executor_id`, `status`, `project_id`) VALUES ('5', 'bad', '3', '4', 'execute', '2');
 INSERT INTO `task_manager_db`.`task` (`id`, `name`, `owner_id`, `executor_id`, `status`, `project_id`) VALUES ('6', 'cat', '3', '5', 'execute', '2');
 INSERT INTO `task_manager_db`.`task` (`id`, `name`, `owner_id`, `executor_id`, `status`, `project_id`) VALUES ('7', 'dog', '3', '4', 'start', '2');
+
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('4', '1', '2', '11.11.20');
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('4', '2', '3', '13.12.20');
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('5', '3', '4', '11.9.21');
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('5', '6', '2', '3.10.20');
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('6', '4', '4', '21.11.21');
+INSERT INTO `task_manager_db`.`task_time` (`user_id`, `task_id`, `time_task`, `date_task`) VALUES ('6', '4', '4', '13.12.19');
+

@@ -37,9 +37,9 @@ public class TaskTimeServiceImpl implements TaskTimeService {
     public TaskTimeDto add(TaskTimeDto taskTimeDto) {
         TaskTime taskTime = dtoConverter.convert(taskTimeDto);
 
-        taskTime = repository.save(taskTime);
+        repository.save(taskTime);
 
-        return converter.convert(taskTime);
+        return taskTimeDto;
     }
 
     @Transactional
@@ -62,5 +62,12 @@ public class TaskTimeServiceImpl implements TaskTimeService {
 
     private List<TaskTimeDto> convert(List<TaskTime> list) {
         return list.stream().map(t -> converter.convert(t)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskTimeDto> getByTaskId(int id) {
+        List<TaskTime> timeByTask = repository.findByTaskIdLike(id);
+
+        return convert(timeByTask);
     }
 }
