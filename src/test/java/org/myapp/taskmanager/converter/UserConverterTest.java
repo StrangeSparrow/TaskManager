@@ -23,7 +23,7 @@ class UserConverterTest {
         user = new User();
         user.setId(44);
         user.setName("TEST");
-        user.setRole(User.Role.admin);
+        user.setRole(User.Role.ADMIN);
     }
 
     @Test

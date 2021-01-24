@@ -20,7 +20,7 @@ class UserDtoConverterTest {
 
     @BeforeEach
     void setUp() {
-        dto = UserDto.builder().id(44).name("TEST").role(User.Role.admin).build();
+        dto = UserDto.builder().id(44).name("TEST").role(User.Role.ADMIN).build();
     }
 
     @Test
@@ -29,6 +29,6 @@ class UserDtoConverterTest {
 
         assertEquals(44, user.getId());
         assertEquals("TEST", user.getName());
-        assertEquals(User.Role.admin, user.getRole());
+        assertEquals(User.Role.ADMIN, user.getRole());
     }
 }

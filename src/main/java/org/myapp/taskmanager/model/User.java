@@ -38,6 +38,6 @@ public class User {
     }
 
     public enum Role {
-        admin, manager, executor
+        ADMIN, MANAGER, EXECUTOR
     }
 }

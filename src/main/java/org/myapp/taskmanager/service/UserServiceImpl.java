@@ -86,14 +86,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getOwners() {
-        List<User> owners = userRepositories.findByRole(User.Role.manager);
+        List<User> owners = userRepositories.findByRole(User.Role.MANAGER);
 
         return convertUserList(owners);
     }
 
     @Override
     public List<UserDto> getExecutors() {
-        List<User> executors = userRepositories.findByRole(User.Role.executor);
+        List<User> executors = userRepositories.findByRole(User.Role.EXECUTOR);
 
         return convertUserList(executors);
     }

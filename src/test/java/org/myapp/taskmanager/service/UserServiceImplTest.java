@@ -30,10 +30,10 @@ class UserServiceImplTest {
     @BeforeEach
     void setUp() {
         listTestData = new ArrayList<>();
-        listTestData.add(new User(1, "test1", "test1", User.Role.admin, null, null, null, null));
-        listTestData.add(new User(2, "test2", "test2", User.Role.executor, null, null, null, null));
-        listTestData.add(new User(3, "test3", "test3", User.Role.executor, null, null, null, null));
-        listTestData.add(new User(4, "test4", "test4", User.Role.manager, null, null, null, null));
+        listTestData.add(new User(1, "test1", "test1", User.Role.ADMIN, null, null, null, null));
+        listTestData.add(new User(2, "test2", "test2", User.Role.EXECUTOR, null, null, null, null));
+        listTestData.add(new User(3, "test3", "test3", User.Role.EXECUTOR, null, null, null, null));
+        listTestData.add(new User(4, "test4", "test4", User.Role.MANAGER, null, null, null, null));
     }
 
     @Test
