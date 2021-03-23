@@ -26,8 +26,10 @@ services:
       dockerfile: Dockerfile
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/task_manager_db
+      - JAVA_TOOL_OPTIONS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
     ports:
       - 8180:8080
+      - 5005:5005
     restart: on-failure
     links:
       - mysql
